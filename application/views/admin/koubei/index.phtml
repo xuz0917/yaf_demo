@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>口碑列表</title>
+    <link rel="Stylesheet" type="text/css" href="/public/contents/style.css" />
+</head>
+<body>
+    <div id="wrapper">
+        <div id="contain">
+	        <table class="table">
+	            <tr>
+	                <td class="header">口碑列表
+	                	<span style="float:right; width:200px;font-size:12px;font-weight:100">
+	                        <input type="text" class="input" id="keyword" name="keyword" style="width:100px" />&nbsp;&nbsp;
+	                        <button type="button" class="button" value="<?php echo $_GET['keyword'];?>" onclick="javascript:window.location.href='/admin_koubei/?keyword='+document.getElementById('keyword').value">搜 索</button>
+	                    </span>
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>
+	                
+	                    <table class="gridbox">
+	                        <tr class="gridtoolbar">
+	                            <th> &nbsp; &nbsp; 添加时间</th>
+	                            <th> &nbsp; &nbsp; 公司名称</th>
+	                            <th> &nbsp; &nbsp; 线路</th>
+	                            <th> &nbsp; &nbsp; 评价手机</th>
+	                            <th> &nbsp; &nbsp; 业务人员</th>
+	                            <th> &nbsp; &nbsp; 操作</th>
+	                        </tr>
+	                        <?php 
+	                        	foreach($content as $value){
+	                        		echo "
+									<tr height=\"27\">
+			                            <td> &nbsp; &nbsp; {$value['addtime']}</td>
+			                            <td> &nbsp; &nbsp; {$value['companyname']}</td>
+			                            <td> &nbsp; &nbsp; {$value['xianlu']}</td>
+			                            <td> &nbsp; &nbsp; {$value['pmobile']}</td>
+			                            <td> &nbsp; &nbsp; {$value['username']}</td>
+			                            <td> &nbsp; &nbsp; <a href=\"/admin_koubei/edit/id/{$value['id']}\" target='_blank'>修改</a>&nbsp; <a href=\"/admin_koubei/del/id/{$value['id']}\" target='_blank'>删除</a></td>
+			                        </tr>";
+	                        	}
+	                        
+	                        ?>
+	                        	                        
+	                    </table>
+	                
+	                </td>
+	            </tr>
+	            <tr>
+                    <td class="aspnetPager">
+                        <div style="float:left;margin-left:10px"><?php echo $page;?></div>
+                    </td>
+                </tr>
+	            
+	        </table>
+      	</div>
+    </div>
+</body>
+</html>

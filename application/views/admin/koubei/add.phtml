@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>口碑录入</title>
+    <link rel="Stylesheet" type="text/css" href="/public/contents/style.css" />
+</head>
+<body>
+    <div id="wrapper">
+        <div id="contain">
+			<form id="admin_user" method="post" action="/admin_koubei/addsave">
+            	<table class="table">
+            		<tr>
+	                	<td colspan="2" class="header">口碑录入</td>
+	               	</tr>
+                	<tr>
+                    	<td width="12%" style="text-align:right">内容：</td>
+                        <td width="88%"><textarea style="width:500px;height:300px" name="contents" placeholder="时间|公司名|线路|评价号码|业务员"></textarea></td>
+					</tr>
+                    <tr>
+                        <td colspan="2" style="text-align:center">
+                        	<input type="submit" value="添加" class="btn btn-green big"> &nbsp;&nbsp; 
+                        	<input class="btn" type="reset" value="重置">
+                        </td>
+                    </tr>
+				</table>
+            </form>
+      	</div>
+    </div>
+</body>
+</html>

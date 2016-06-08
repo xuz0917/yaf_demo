@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>快捷导航</title>
+    <link rel="Stylesheet" type="text/css" href="../contents/left.css" />
+    <script src="../scripts/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        function OpenLink(lefturl, righturl) {
+            if (lefturl != "") {
+                parent.frames["left"].location = lefturl;
+            }
+            try {
+                parent.MDIOpen(righturl);
+            } catch (Error) {
+                parent.frames["main_right"].location = "../" + righturl; ; void (0);
+            }
+        }
+
+        function gotourl(url) {
+            try {
+                parent.MDILoadurl(url);
+            } catch (Error) {
+                parent.frames["main_right"].location = "../" + url;
+            }
+        }
+
+        jQuery(function ($) {
+
+            $(".navigation-item").not(".navigation-item:first").find("ul").slideUp();
+            $(".navigation-item:first .item-title").addClass("current");
+
+            $(".navigation-item").each(function () {
+                var item = $(this);
+                item.find(".item-title").click(function () {
+                    if ($(this).hasClass("current")) {
+                        $(this).removeClass("current");
+                    } else {
+                        $(this).addClass("current");
+                    }
+                    item.find("ul").slideToggle("30");
+                });
+
+            });
+
+
+            $(".navigation-item ul li a").click(function () {
+                $(".navigation-item ul li a.current").removeClass("current");
+                $(this).addClass("current");
+            });
+            gotourl("common/start.html");
+        });
+    </script>
+</head>
+<body>
+    <div id="sidebar">
+        <div class="navigationbar">
+            <span>管理菜单</span>
+        </div>
+        <div class="navigation-list">
+            <div class="navigation-item">
+                <h5 class="item-title current">账务管理</h5>
+                <ul>
+					<li><a href="javascript:OpenLink('','./admin_zhangwu/')">账务列表</a></li>
+	                <li><a href="javascript:OpenLink('','./admin_zhangwu/add')">账务录入</a></li>
+	                <li><a href="javascript:OpenLink('','./admin_zhangwu/daochu')">账务导出</a></li>
+	                <li><a href="javascript:OpenLink('','./admin_zhangwu/daoru')">账务导入</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="navigation-list">
+            <div class="navigation-item">
+                <h5 class="item-title">系统管理</h5>
+                <ul>
+                    <li><a href="javascript:OpenLink('','./admin_yewutype/')">业务类型管理</a></li>
+                    <li><a href="javascript:OpenLink('','./admin_user/')">业务员管理</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

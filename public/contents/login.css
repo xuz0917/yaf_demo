@@ -1,0 +1,45 @@
+﻿/* reset */
+html,body{ margin:0; padding:0; font:12px/130% 微软雅黑,Verdana; color:#000000; width:100%; text-align:center; overflow:hidden; }
+
+div,span,label{ margin:0; padding:0; }
+
+strong{ margin:0; padding:0; font-weight:bold; }
+em{ margin:0; padding:0; font-style:italic; }
+
+ul,li{ margin:0; padding:0; list-style:none; }
+
+img{ margin:0; padding:0; border:0 none; }
+
+a{ margin:0; padding:0; font:12px/130% 微软雅黑,Verdana; color:#000000; text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+.clearfix:after{ display:block; height:0px; visibility:hidden; clear:both; content:".\20" }
+.clearfix{ zoom:1  }
+.clear{ float:none; clear:both; height:1px; border:0 none; background:transparent none; overflow:hidden; }
+
+.text-err{ padding-left:3px; padding-right:3px; font-size:12px; color:#FF0000; }
+.text-key{ padding-left:3px; padding-right:3px; font-size:12px; color:#ED6B23; }
+
+
+
+/* main */
+body{ width:100%; height:100%; background:#FFFFFF url(images/sign/bg_login.jpg) no-repeat 0 0; }
+#box-login{ clear:both; margin-right:auto; margin-left:auto; padding-top:150px; width:830px; }
+.loginarea{ padding-top:50px; width:100%; height:320px; background:url(images/sign/login_form.png) no-repeat 47% 6px; }
+    .logininfo{ float:left; margin-left:36px; width:350px; height:200px; background:url(images/sign/title_login.gif) no-repeat; }
+    .loginform{ float:right; width:380px; height:200px; }
+        .loginform ul{ width:100%; }
+        .loginform ul li{ clear:both; padding-top:10px; width:100%; text-align:left; font-size:14px; color:#666666; }
+            .loginform ul li .left{ float:left; width:65px; text-align:left; line-height:28px; overflow:hidden }
+            .loginform ul li .right{ float:left; width:290px; text-align:left; }
+            .loginform ul li .f_code{ margin-left:65px; }
+            .loginform ul li .f_button{ margin-top:10px; margin-left:55px; }
+            
+.textbox{ width:150px; height:18px; padding:3px 0; text-align:left; border:1px solid #CCCCCC; font-size:14px; color:#333333; }
+.textcurr{ border-color:#F28974; }
+
+.loginbutton{ cursor:pointer; display:block; width:93px; height:32px; border:0 none; background:url(images/sign/button_login.gif) no-repeat; text-indent:-200px; overflow:hidden; }
+
+
+.copyright{ clear:both; margin-top:30px; width:100%; text-align:center; font-size:11px; color:#666666; }
+.copyright a{ font-size:11px; color:#666666; }

@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	<meta http-equiv="X-UA-Compatible" content="IE=8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>账务信息添加</title>
+	<link rel="Stylesheet" type="text/css" href="/public/contents/style.css" />
+	<link rel="Stylesheet" type="text/css" href="/public/contents/select2.css" />
+	<script type="text/javascript" src="/public/scripts/jquery.min.js" ></script>
+	<script type="text/javascript" src="/public/scripts/select2.js" ></script>
+	<script type="text/javascript" src="/public/scripts/My97DatePicker/WdatePicker.js" ></script>
+
+	<script type="text/javascript">
+		$(function() {
+			$('select').select2();
+		});
+	</script>
+</head>
+
+<body>
+	<div id="wrapper">
+		<div id="contain">
+			<form id="ff" method="post" action="/admin_zhangwu/addsave">
+				<table class="table">
+					<tr>
+						<td colspan="3" class="header">账务信息添加</td>
+					</tr>
+					<tr>
+						<td width="10%"></td>
+						<td width="80%">
+							<input name="addtime" class="txt_title" style="width:80px" value="<?php if(!empty($_SESSION['addtime'])) echo $_SESSION['addtime']; else echo date("Y-m-d",time()); ?>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"></input>
+							|
+							<select name="uid" id="uid">
+								<option value="">业务员</option>
+								<?php
+								foreach ($userlist as $value){
+									echo "<option value=\"{$value['id']}\">{$value['username']}</option>";
+								}
+								?>
+							</select>
+							|
+							<input type="text" class="txt_title" style="width: 78px" name="companyname" placeholder="客户" />
+							|
+							<input type="text" style="width: 78px" name="yewuname" placeholder="星级/类别" />
+							|
+							<select name="tid">
+								<?php
+								foreach ($yewutype as $value){
+									echo "<option value=\"{$value['id']}\">{$value['typename']}</option>";
+								}
+								?>
+							</select>
+							|
+							<select name="quankuan">
+								<option value="0">全款</option>
+								<option value="1">预收</option>
+								<option value="2">收齐</option>
+							</select>
+							|
+							<select name="xufei">
+								<option value="1">续费</option>
+								<option value="0">新作</option>
+							</select>
+							| 价格：
+							<input type="text" class="txt_title" name="jiage" style="width: 50px"></input>
+							|
+							<label>
+								<input style="vertical-align: middle" type="checkbox" name="daka" />
+								打卡
+							</label>
+							<hr >
+						
+						</td>
+						<td width="10%"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<label>
+								<input style="vertical-align: middle" type="checkbox" name="shenqing" />
+								申请单
+							</label>
+							|
+							<label>
+								<input style="vertical-align: middle" type="checkbox" name="zengsong" />
+								赠送
+							</label>
+							|
+							<label>
+								<input style="vertical-align: middle" type="checkbox" name="tixing" />
+								置顶提醒
+							</label>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							优惠券：
+							<input type="text" name="youhuiquan" style="width: 50px" class="txt_title"></input>
+							| 优惠价格：
+							<input type="text" name="youhui" style="width: 50px" class="txt_title"></input>
+							|
+							<select name="zhenghe">
+								<option value="0">未整合</option>
+								<option value="1">整合</option>
+							</select>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							备注项：
+                            <textarea name="beizhu" class="txt_title" style="height: 60px; vertical-align:text-top"></textarea>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td colspan="3" style="text-align: center">
+							<button type="submit" class="button">提 交</button>
+							&nbsp;&nbsp;
+							<button type="reset" class="button">重 置</button>
+						</td>
+					</tr>
+				</table>
+
+			</form>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		document.getElementById("uid").value=<?php echo $_SESSION['uid'];?>;
+	</script>
+</body>
+</html>

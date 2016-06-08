@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>账务列表</title>
+	<link rel="Stylesheet" type="text/css" href="/public/contents/style.css" />
+	<script type="text/javascript" src="/public/scripts/jquery.min.js" ></script>
+	<script type="text/javascript" src="/public/scripts/My97DatePicker/WdatePicker.js" ></script>
+	<script type="text/javascript">
+		function docaozuo(id,t){
+			$.ajax({
+				url: '/admin_zhangwu/docaozuo?id='+id+'&t='+t,
+				type: 'GET',
+				timeout: 1000,
+				success: function(a){
+					location.reload();
+				}
+			});
+		}
+		function doshenqing(id,t){
+			$.ajax({
+				url: '/admin_zhangwu/doshenqing?id='+id+'&t='+t,
+				type: 'GET',
+				timeout: 1000,
+				success: function(a){
+					location.reload();
+				}
+			});
+		}
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="contain">
+			<table class="table">
+				<tr>
+					<td class="header">账务列表
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<form action="">
+						<span style="width:200px;font-size:12px">
+							&nbsp; 选择条件：
+							<!-- 业务人员选择 -->
+							<select name="uid" id="uid">
+								<option value="0" selected>业务人员</option>
+								<?php
+								foreach ($uidlist as $value) {
+									echo "<option value=\"{$value['id']}\">{$value['username']}</option>";
+								}
+								?>
+							</select>
+							<script type="text/javascript">
+								document.getElementById("uid").value=<?php echo $_GET['uid'];?>;
+							</script>
+							<!-- 业务选择 -->
+							<select name="tid" id="tid">
+								<option value="0">业务类型</option>
+								<?php
+								foreach ($tidlist as $value) {
+									echo "<option value=\"{$value['id']}\">{$value['typename']}</option>";
+								}
+								?>
+							</select>
+							<script type="text/javascript">
+								document.getElementById("tid").value=<?php echo $_GET['tid'];?>;
+							</script>
+							<!-- 申请单选择 -->
+							<select name="shenqing" id="shenqing">
+								<option value="0">申请情况</option>
+								<option value="1">否</option>
+								<option value="2">是</option>
+							</select>
+							<script type="text/javascript">
+								document.getElementById("shenqing").value=<?php echo $_GET['shenqing'];?>;
+							</script>
+							
+							<!-- 续费选择 -->
+							<select name="xufei" id="xufei">
+								<option value="0">续费情况</option>
+								<option value="1">新做</option>
+								<option value="2">续费</option>
+							</select>
+							<script type="text/javascript">
+								document.getElementById("xufei").value=<?php echo $_GET['xufei'];?>;
+							</script>
+							|
+							<!-- 续费选择 -->
+							<label><input type="checkbox" name="quankuan[]" value="1" <?php if(strstr($_GET['quankuan'],'0')||$_GET['quankuan']==='0'){echo 'checked';}?> />全款</label>
+							<label><input type="checkbox" name="quankuan[]" value="2" <?php if(strstr($_GET['quankuan'],'1')){echo 'checked';}?> />预收</label>
+							<label><input type="checkbox" name="quankuan[]" value="3" <?php if(strstr($_GET['quankuan'],'2')){echo 'checked';}?> />收齐</label>
+							|
+							<!-- 日期选择 -->
+							<input type="text" class="txt_title" style="width:130px" name="starttime" value="<?php echo $_GET["starttime"];?>" placeholder="开始日期" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+							<input type="text" class="txt_title" style="width:130px" name="endtime" value="<?php if(!empty($_GET["endtime"]))echo $_GET["endtime"];else echo date("Y-m-d");?>" placeholder="截至日期" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+							|
+							<!-- 公司名 -->
+							<input type="text" class="txt_title" style="width:100px" id="keyword" name="keyword" value="<?php echo $_GET['keyword'];?>" placeholder="公司名称" />&nbsp;&nbsp;
+							<button type="submit" class="button">搜 索</button>
+						</span>
+					</form>
+					<hr />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table class="gridbox">
+							<tr class="gridtoolbar">
+								<th> &nbsp; &nbsp; ID</th>
+								<th> &nbsp; &nbsp; 收款日期</th>
+								<th> &nbsp; &nbsp; 业务人员</th>
+								<th> &nbsp; &nbsp; 客户名称</th>
+								<th> &nbsp; &nbsp; 业务类型</th>
+								<th> &nbsp; &nbsp; 价格</th>
+								<th> &nbsp; &nbsp; 状态</th>
+								<th> &nbsp; &nbsp; 申请单</th>
+								<th> &nbsp; &nbsp; 赠送</th>
+								<th> &nbsp; &nbsp; 操作</th>
+							</tr>
+							<?php 
+								foreach($content as $value){
+									$shenqing = '否';
+									$daka = '';
+									$caozuo = '未续费或制作';
+									$quankuan = '';
+									$shenqingms ='';
+									$zengsongms ='';
+
+									if($value['shenqing']==1)$shenqing='是';
+									if($value['zengsong']==1)$zengsong='是';else $zengsong='否';;
+									if($value['daka']==1)$daka='打卡';
+									if($value['caozuo']==1)$caozuo='完成';
+									if($value['quankuan']==1)$quankuan='预收'; elseif ($value['quankuan']==2)$quankuan='收齐';
+									if($value['shenqing']){$shenqingms =$value['beizhu'];}
+									if($value['zengsong']){$zengsongms =$value['beizhu'];}
+									echo "
+									<tr height=\"27\">
+										<td> &nbsp; &nbsp; {$value['id']}</td>
+										<td> &nbsp; &nbsp; ".substr($value['addtime'],0,10)."</td>
+										<td> &nbsp; &nbsp; {$value['username']}</td>
+										<td> &nbsp; &nbsp; {$value['companyname']} &nbsp;<a onclick=\"window.open('http://3g.56cheng.com/search/?searchtype=2&chufa=1&zx={$value['companyname']}')\" style=\"cursor:pointer\">>></a></td>
+										<td> &nbsp; &nbsp; {$value['yewuname']} {$value['typename']}</td>
+										<td> &nbsp; &nbsp; {$value['jiage']} $daka $quankuan</td>
+										<td> &nbsp; &nbsp; <a href='javascript:;' onclick=\"docaozuo({$value['id']},{$value['caozuo']});\">$caozuo</a></td>
+										<td title=\"$shenqingms\"> &nbsp; &nbsp; <a href='javascript:;' onclick=\"doshenqing({$value['id']},{$value['shenqing']});\">$shenqing</a></td>
+										<td title=\"$zengsongms\"> &nbsp; &nbsp; $zengsong</td>
+										<td> &nbsp; &nbsp; <a href=\"/admin_zhangwu/edit/id/{$value['id']}\" target='_blank'>修改</a>&nbsp;<a href=\"/admin_zhangwu/del/id/{$value['id']}\">删除</a></td>
+									</tr>";
+								}
+							
+							?>
+														
+						</table>
+					
+					</td>
+				</tr>
+				<tr>
+					<td class="aspnetPager">
+						<div style="float:left;margin-left:10px"><?php echo $page;?></div><div style="float:right;margin-right:10px">业务总量：<?php echo $yewusum;?> 元</div>
+					</td>
+				</tr>
+			</table>
+	  	</div>
+	</div>
+</body>
+</html>

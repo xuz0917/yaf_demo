@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>口碑修改</title>
+    <link rel="Stylesheet" type="text/css" href="/public/contents/style.css" />
+    <link rel="Stylesheet" type="text/css" href="/public/contents/select2.css" />
+    <script type="text/javascript" src="/public/scripts/jquery.min.js" ></script>
+    <script type="text/javascript" src="/public/scripts/select2.js" ></script>
+    <script type="text/javascript" src="/public/scripts/My97DatePicker/WdatePicker.js" ></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('select').select2();
+        });
+    </script>
+
+</head>
+<body>
+    <div id="wrapper">
+        <div id="contain">
+			<form id="admin_user" method="post" action="/admin_koubei/editsave">
+            	<input type="hidden" name="id" value="<?php echo $content['id'];?>" />
+            	<table class="table">
+            		<tr>
+	                	<td colspan="2" class="header">口碑修改</td>
+	               	</tr>
+                	<tr>
+                    	<td width="12%" style="text-align:right">添加时间：</td>
+                        <td width="88%"><input type="text" class="txt_title" size="28" name="addtime" value="<?php echo $content['addtime'];?>"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/></td>
+					</tr>
+                    <tr>
+                        <td style="text-align:right">公司名：</td>
+                        <td><input type="text" class="txt_title" size="28" name="companyname" value="<?php echo $content['companyname'];?>"/></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right">线路：</td>
+                        <td><input type="text" class="txt_title" size="28" name="xianlu" value="<?php echo $content['xianlu'];?>"/></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right">评价电话：</td>
+                        <td><input type="text" class="txt_title" size="28" name="pmobile" value="<?php echo $content['pmobile'];?>"/></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right">业务员：</td>
+                        <td>
+                            <select name="uid" id="uid">
+                                <option value="">业务员</option>
+                                <?php
+                                    foreach ($userlist as $value){
+                                        echo "<option value=\"{$value['id']}\">{$value['username']}</option>";
+                                    }
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:center">
+                        	<input type="submit" value="保存信息" class="btn btn-green big"> &nbsp;&nbsp; 
+                        	<input class="btn" type="reset" value="重置">
+                        </td>
+                    </tr>
+				</table>
+            </form>
+      	</div>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById("uid").value=<?php echo $content['uid'];?>;
+    </script>
+</body>
+</html>

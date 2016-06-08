@@ -1,0 +1,157 @@
+﻿/* reset */
+html,body{ margin:0; padding:0; }
+body{ font:12px 微软雅黑,Verdana,Arial; background:#FFFFFF; color:#000000; width:100%; text-align:center; }
+
+frameset,frame,iframe{ margin:0; padding:0; border:0; }
+
+table,th,td{ margin:0; padding:0; }
+table th{ text-align:center; font-weight:bold; }
+
+div,span,label{ margin:0; padding:0; }
+div{ margin-right:auto; margin-left:auto; }
+p{ margin:0; padding:0; }
+
+strong{ margin:0; padding:0; font-weight:bold; }
+em{ margin:0; padding:0; font-style:italic; line-height:normal; }
+
+ul,li{ margin:0; padding:0; list-style:none; }
+
+img{ margin:0; padding:0; border:0 none; }
+
+a{ margin:0; padding:0; font:12px/130% 微软雅黑,Verdana,Arial; color:#000000; text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+h1,h2,h3,h4,h5,h6{ margin:0; padding:0; }
+h1{ font-size:24px; font-weight:bold; }
+h2{ font-size:20px; font-weight:bold; }
+h3{ font-size:16px; font-weight:bold; }
+h4{ font-size:14px; font-weight:bold; }
+h5{ font-size:12px; font-weight:bold; }
+h6{ font-size:10px; font-weight:bold; }
+
+.clearfix:after{ display:block; height:0px; visibility:hidden; clear:both; content:".\20" }
+.clearfix{ zoom:1  }
+.clear{ float:none; clear:both; height:1px; border:0 none; background:transparent none; overflow:hidden; }
+
+
+.reg{ color:#FF0000; }
+.gray{ color:#999999; }
+
+.hidden{ display: none; }
+
+.hand{ cursor:pointer; }
+
+
+/* loyout */
+
+
+#header{ clear:both; width:100%; height:60px; background:#CCCCCC url(images/frame/bg_header.gif) repeat-x 0 0;  }
+
+    #header .logo{ float:left; margin-top:15px; width:270px; text-align:left; }
+        .logo .logo_title{ clear:both; display:block; margin-left:20px; font-size:20px; line-height:100%; }
+        .logo .logo_info{ clear:both; display:block; margin-top:5px; margin-left:20px; font-size:11px; line-height:100%; color:#333333; }
+        
+    #header .menu{ float:left; list-style:none; margin-top:26px; width:512px; height:26px; }
+        .menu ul li{ float:left; margin-right:10px; padding-right:20px; background:url(images/frame/menu_line.png) no-repeat 100% 0; }
+            .menu ul li a{ display:inline-block; padding:2px; cursor:pointer; color:#666666; font-size:14px; font-weight:bold; }
+            .menu ul li a.current{ color:#8E0300; border-bottom:2px solid #8E0300; }
+            .menu ul li a:hover{ background-color:#8E0300; color:#FFFFFF; text-decoration:none; }
+            
+    #header .toolbar{ float:right; margin-top:5px; margin-right:10px; width:230px; height:20px; text-align:right; color:#666666; }
+        .toolbar a{ color:#666666; text-decoration:underline; }
+        .toolbar a:hover{ color:#8E0300; text-decoration:none; }
+        
+
+/* 页尾 */      
+  
+#footer{ clear:both; width:100%; height:26px; background:url(images/frame/bg_footer.gif) no-repeat 0 0; text-align:right; line-height:26px; overflow:hidden; }
+
+
+.main
+{
+    width: 100%;
+    height: 100%;
+    background: url(images/frame/bg_top.gif) repeat-x;
+    table-layout: fixed;
+}
+.main td, .left td, .tool_bar td
+{
+    vertical-align: top;
+    font-size: 12px;
+}
+.right
+{
+    width: 100%;
+    height: 100%;
+    table-layout: fixed;
+    clear: both;
+}
+.tool_bar
+{
+    width: 100%;
+    height: 29px;
+    table-layout: fixed;
+}
+.t_l
+{
+    position: relative;
+    left:0;
+    width: 190px;
+    height: 100%;
+}
+.t_l_c
+{
+    height: 100%;
+    text-align: center;
+    border-right: 1px solid /*#8EC1EE*/#d3d3d3;
+    background:#F5F5F5;
+}
+
+#frameBar
+{
+    position: absolute;
+    z-index: 2;
+    top: 45%;
+    display: block;
+    width: 12px;
+    height: 62px;
+    text-indent: -99999px;
+    cursor: pointer;
+}
+.bar_c
+{
+    right: 2px;
+    background: url(images/frame/bar_hit.gif) no-repeat 0px 0px;
+}
+.bar_o
+{
+    right: -1px;
+    background: url(images/frame/bar_hit.gif) no-repeat 0px -62px;
+}
+
+.t_rr
+{
+    position: relative;
+    right:0;
+    width: 190px;
+    height: 100%;
+}
+.t_rr_c
+{
+    height: 100%;
+    text-align: center;
+    border-right: 1px solid /*#8EC1EE*/#d3d3d3;
+    background:#F5F5F5;
+}
+
+#frameBar1
+{
+    position: absolute;
+    z-index: 2;
+    top: 45%;
+    display: block;
+    width: 12px;
+    height: 62px;
+    text-indent: -99999px;
+    cursor: pointer;
+}

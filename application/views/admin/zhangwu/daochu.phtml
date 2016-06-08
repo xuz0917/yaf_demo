@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>账务导出</title>
+    <link rel="Stylesheet" type="text/css" href="/public/contents/style.css" />
+	<script type="text/javascript" src="/public/scripts/jquery.min.js" ></script>
+	<script type="text/javascript" src="/public/scripts/My97DatePicker/WdatePicker.js" ></script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="contain">
+			<form action="/admin_zhangwu/excel" method="post">
+            	<table class="table">
+            		<tr>
+	                	<td colspan="6" class="header">账务导出</td>
+	               	</tr>
+                	<tr>
+                    	<td width="10%" style="text-align:right">开始日期：</td>
+                        <td width="10%"><input type="text" class="txt_title" style="width: 100px" name="starttime" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/></td>
+					    <td width="10%" style="text-align:right">结束日期：</td>
+                        <td width="10%"><input type="text" class="txt_title" style="width: 100px" name="endtime" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/></td>
+                        <td width="10%">&nbsp; 选择条件：</td>
+                        <td width="50%">
+                            <!-- 业务人员选择 -->
+                            <select name="uid" id="uid">
+                                <option value="0" selected>业务人员</option>
+                                <?php
+                                foreach ($uidlist as $value) {
+                                    echo "<option value=\"{$value['id']}\">{$value['username']}</option>";
+                                }
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="text-align:center">
+                        	<input type="submit" value="导出" class="btn btn-green big">
+                        </td>
+                    </tr>
+				</table>
+            </form>
+      	</div>
+    </div>
+</body>
+</html>

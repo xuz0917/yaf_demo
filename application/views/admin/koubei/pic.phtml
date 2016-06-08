@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+	<html>
+	<head>
+	<meta http - equiv = "Content-Type" content = "text/html; charset=utf-8">
+	<title> 口碑PK统计 </title>
+
+	<script type = "text/javascript" src = "http://cdn.hcharts.cn/jquery/jquery-1.8.2.min.js"> </script>
+	<style type = "text/css"> ${demo.css} </style>
+	<script type = "text/javascript">
+		$(function() {
+			$('#container').highcharts({
+				chart: {
+					type: 'column'
+				},
+				title: {
+					text: '口碑PK统计'
+				},
+				/*
+				subtitle: {
+				    text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+				},
+				*/
+				xAxis: {
+					type: 'category',
+					labels: {
+						rotation: 0,
+						style: {
+							fontSize: '14px',
+							fontFamily: '微软雅黑'
+						}
+					}
+				},
+				yAxis: {
+					min: 0,
+					title: {
+						text: '评价数量'
+					},
+					style: {
+						fontSize: '14px',
+						fontFamily: '微软雅黑'
+					}
+				},
+				legend: {
+					enabled: false
+				},
+				tooltip: {
+					pointFormat: '下载总量：{point.y:f}个</b>'
+				},
+				series: [{
+					name: 'Population',
+					data: [ <?php
+						foreach($list as $key => $value) {
+							echo '[\''.$value['name'].
+							'\','.$value['y'].
+							'],';
+						} ?>
+					],
+					dataLabels: {
+						enabled: true,
+						rotation: 0,
+						color: '#FFFFFF',
+						align: 'right',
+						format: '{point.y:f}个', // one decimal
+						y: 30, // 10 pixels down from the top
+						style: {
+							fontSize: '14px',
+							fontFamily: '微软雅黑'
+						}
+					}
+				}]
+			});
+		});
+	</script> 
+	</head>
+	<body>
+		<script src = "/public/scripts/Highcharts/highcharts.js"> </script>
+		<script src = "/public/scripts/Highcharts/modules/data.js"> </script>
+		<script src = "/public/scripts/Highcharts/modules/drilldown.js"> </script>
+		<div id = "container" style = "min-width: 310px; height: 400px; margin: 0 auto"> </div>
+	</body> 
+</html>
